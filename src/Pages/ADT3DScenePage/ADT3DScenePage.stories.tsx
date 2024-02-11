@@ -131,13 +131,6 @@ export const DeeplinkedBuilder = (_args, { globals: { theme, locale } }) => {
 };
 DeeplinkedBuilder.storyName = 'Mock 3D scene page (Deeplinked Builder)';
 
-const customSceneStyles: IStackStyles = {
-    root: {
-        '.cb-scene-page-wrapper': {
-            height: 'calc(100vh - 300px)'
-        }
-    }
-};
 const textFieldStyles: Partial<ITextFieldStyles> = {
     root: {
         width: 500
@@ -182,8 +175,8 @@ const ThemeCustomizationContent: React.FC<{ theme; locale }> = ({
         [sceneThemeDispatch]
     );
     return (
-        <Stack>
-            <Stack styles={customSceneStyles}>
+        <Stack styles={{ root: { height: '100%', maxHeight: '100vh' } }}>
+            <Stack grow={1}>
                 <ADT3DScenePage
                     title={'3D Scene Page'}
                     theme={theme}
@@ -197,7 +190,7 @@ const ThemeCustomizationContent: React.FC<{ theme; locale }> = ({
                     }
                 />
             </Stack>
-            <Stack horizontal tokens={{ childrenGap: 8 }}>
+            <Stack horizontal tokens={{ childrenGap: 8 }} grow={0}>
                 <TextField
                     label={'Object color options'}
                     multiline
