@@ -23,6 +23,7 @@ module.exports = {
               ],
     // Add any Storybook addons you want here: https://storybook.js.org/addons/
     addons: [
+        '@storybook/addon-actions',
         '@storybook/addon-essentials',
         '@storybook/addon-interactions',
         '@storybook/addon-a11y'
@@ -72,6 +73,13 @@ module.exports = {
         });
 
         config.resolve.extensions.push('.ts', '.tsx');
+
+        config.module.rules.push({
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: 'javascript/auto'
+        });
+        config.resolve.extensions.push('.mjs');
 
         config.plugins.push(
             new ESLintPlugin({
